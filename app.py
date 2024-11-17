@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 import pandas as pd
-
 app = Flask(__name__)
-
 # Load your dataset
 df = pd.read_csv('ExerciseDataset.csv')
 
