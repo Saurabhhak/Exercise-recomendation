@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Recommendation System</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav id="menu">
+        <div id="Health Topics"><a href="#">Health Topics</a></div>
+        <div id="resourse"><a href="#">Resourse</a></div>
+        <div id="Health Tips"><a href="#">Health Tips</a></div>
+        <div id="about"><a href="#">About Us</a></div>
+        <div id="sign"><a href="sign.html">SignUp</a></div>
+    </nav>
+    <h2>Health-Based Exercise Recommendation System</h2>
+    <form action="/recommend" method="POST">
+        <label for="exercise_type">Type of Exercise</label>
+        <select id="exercise_type" name="exercise_type">
+            <option value="">Select Exercise Type</option>
+            <option value="Strength">Strength</option>
+            <option value="Plyometrics">Plyometrics</option>
+            <option value="Stretching">Stretching</option>
+            <option value="Powerlifting">Powerlifting</option>
+            <option value="Strongman">Strongman</option>
+            <option value="Cardio">Cardio</option>
+            <option value="Olympic Weightlifting">Olympic Weightlifting</option>
+        </select>
+        <label for="body_part">Body Part</label>
+        <select id="body_part" name="body_part">
+            <option value="">Select Body Part</option>
+            <option value="Abdominals">Abdominals</option>
+            <option value="Abductors">Abductors</option>
+            <option value="Adductors">Adductors</option>
+            <option value="Biceps">Biceps</option>
+            <option value="Calves">Calves</option>
+            <option value="Chest">Chest</option>
+            <option value="Forearms">Forearms</option>
+            <option value="Glutes">Glutes</option>
+            <option value="Hamstrings">Hamstrings</option>
+            <option value="Lats">Lats</option>
+            <option value="Lower Back">Lower Back</option>
+            <option value="Middle Back">Middle Back</option>
+            <option value="Traps">Traps</option>
+            <option value="Quadriceps">Quadriceps</option>
+            <option value="Shoulders">Shoulders</option>
+            <option value="Triceps">Triceps</option>
+        </select>
+        <label for="equipment">Equipment</label>
+        <select id="equipment" name="equipment">
+            <option value="">Select Equipment</option>
+            <option value="Barbell">Barbell</option>
+            <option value="Kettlebells">Kettlebells</option>
+            <option value="Dumbbell">Dumbbell</option>
+            <option value="Other">Other</option>
+            <option value="Cable">Cable</option>
+            <option value="Machine">Machine</option>
+            <option value="Body Only">Body Only</option>
+            <option value="Medicine Ball">Medicine Ball</option>
+            <option value="Exercise Ball">Exercise Ball</option>
+            <option value="Foam Roll">Foam Roll</option>
+            <option value="E-Z Curl Bar">E-Z Curl Bar</option>
+            <option value="Bands">Bands</option>
+        </select>
+        <label for="level">Level</label>
+        <select id="level" name="level">
+            <option value="">Select Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Expert">Expert</option>
+        </select>
+        <input type="submit" value="Get Recommendations">
+        <label for="output">Recommended Exercises</label>
+        {% if recommendations %}{{recommendations | safe}}{% endif %}
+    </form>
+    <br><br>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We provide the best recommendations for products, services, and experiences based on user reviews and expert opinions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-media">
+                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Subscribe Prime</h3>
+                <form action="/subscribe" method="post">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Join Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Saurabh. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
