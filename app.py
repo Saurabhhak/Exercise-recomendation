@@ -8,6 +8,21 @@ df = pd.read_csv('ExerciseDataset.csv')
 def index():
     return render_template('index.html')
 
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('sign.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
 @app.route('/recommend', methods=['POST'])
 def recommend():
     # Get form data from the request
@@ -30,8 +45,6 @@ def recommend():
         # Display a message if no results are found
         recommendations = "No matching exercises found. Please adjust your filters and try again."
     return render_template('index.html', recommendations=recommendations)
-@app.route('/sign')
-def sign():
-    return render_template('sign.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

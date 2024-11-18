@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Recommendation System</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <a href="#">Resourse</a>
         <a href="#">Health Tips</a>
         <a href="#Aboutus">About Us</a>
-        <a href="sign.html">SignUp</a>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
     </nav>
     <h2>Health-Based Exercise Recommendation System</h2>
     <form action="/recommend" method="POST">
