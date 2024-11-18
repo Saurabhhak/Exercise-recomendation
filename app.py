@@ -40,7 +40,7 @@ def recommend():
     ]
     if not filtered_df.empty:
         # Convert filtered data to HTML for display
-        recommendations = filtered_df.to_html(index=False)
+        recommendations = filtered_df.to_json(index=False)
     else:
         # Display a message if no results are found
         recommendations = "No matching exercises found. Please adjust your filters and try again."

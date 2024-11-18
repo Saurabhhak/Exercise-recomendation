@@ -24,6 +24,7 @@ body {
     text-decoration: none;
     background-color: #f4f4f9;
     border-radius: 6px;
+    color: #616161;
 }
 
 .header>* {
@@ -52,7 +53,7 @@ form {
 
 h2 {
     text-align: center;
-    color: rgb(52, 175, 7);
+    color: rgb(0, 81, 255);
     font-family: 'Trebuchet MS';
     font-weight: bolder;
 }
@@ -102,7 +103,13 @@ input[type="submit"]:hover {
     background-color: #0056b3;
     color: #ffffff;
 }
-
+span li
+{
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 100px;
+}
 /* Footer Styles */
 footer {
     background-color: #a9aacb;
