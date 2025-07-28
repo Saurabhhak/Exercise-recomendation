@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "robot",
+    "terminal.integrated.smoothScrolling": true,
+    "C_Cpp.dimInactiveRegions": false,
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": []
+}
