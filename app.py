@@ -6,28 +6,32 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
-from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 
 # Flask App Setup
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key')  #  FIXED: Use environment or default
+app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key')
 
-# MySQL Config
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'mydatabase'
+# PostgreSQL Config for Render
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://exercise_user:WtA49gw1Ng9hW3lPXtweOAqhdA1r10r1@dpg-d24vbrfgi27c73bggapg-a.oregon-postgres.render.com/exercise_db_irhs'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize Extensions
 bcrypt = Bcrypt(app)
-mysql = MySQL(app)
+db = SQLAlchemy(app)
 
-#  FIXED: Login Required Decorator
+# User Model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+
+# Login Required Decorator
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print(" Checking session:", session)
         if 'user_id' not in session:
             flash("Please log in to access this page.", "warning")
             return redirect(url_for('login'))
@@ -44,31 +48,26 @@ class RegisterForm(FlaskForm):
     ])
     submit = SubmitField("Register")
 
-#  FIXED: Load Dataset Once
+# Load Dataset
 def load_data():
     try:
         df = pd.read_csv('ExerciseDataset.csv')
         current_app.config['DATAFRAME'] = df
-        print("Dataset loaded successfully:", df.columns)
     except FileNotFoundError:
         print("Exercise dataset not found.")
 
-#  FIXED: Home Page (Protected)
+# Home Page
 @app.route('/')
 @login_required
 def home():
     user_id = session.get('user_id')
-    cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM users WHERE id=%s", (user_id,))
-    user = cursor.fetchone()
-    cursor.close()
-
+    user = User.query.get(user_id)
     if user:
         return render_template('home.html', user=user)
     flash("Invalid session. Please log in again.", "danger")
     return redirect(url_for('login'))
 
-#  FIXED: Login Route validation authentication route
+# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'user_id' in session:
@@ -77,28 +76,19 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-        user = cursor.fetchone()
-        cursor.close()
-
-        if user:
-            stored_hash = user[3]
-            if stored_hash and bcrypt.check_password_hash(stored_hash, password):
-                session['user_id'] = user[0]
-                session['user_name'] = user[1]
-                print(" Session after login:", session)
-                flash("Login successful!", "success")
-                return redirect(url_for('home'))
-            else:
-                flash("Incorrect password!", "danger")
+        if user and bcrypt.check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            session['user_name'] = user.name
+            flash("Login successful!", "success")
+            return redirect(url_for('home'))
         else:
-            flash("No account found with this email.", "danger")
+            flash("Invalid credentials.", "danger")
 
     return render_template('login.html')
 
-#  FIXED: Register Route
+# Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
@@ -107,25 +97,21 @@ def register():
         email = form.email.data
         password = form.password.data
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-        existing = cursor.fetchone()
-        if existing:
+        if User.query.filter_by(email=email).first():
             flash("Email already registered.", "warning")
             return redirect(url_for('register'))
 
         hashed_pw = bcrypt.generate_password_hash(password).decode('utf-8')
-        cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
-                       (name, email, hashed_pw))
-        mysql.connection.commit()
-        cursor.close()
+        user = User(name=name, email=email, password=hashed_pw)
+        db.session.add(user)
+        db.session.commit()
 
         flash("Registration successful! Please log in.", "success")
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
 
-#  FIXED: Recommend (Protected)
+# Recommend
 @app.route('/recommend', methods=['POST'])
 @login_required
 def recommend():
@@ -148,31 +134,29 @@ def recommend():
     results = df[['Title', 'Description', 'Image']] if not df.empty else pd.DataFrame()
     recommendations = results.to_dict(orient='records')
 
-    user_id = session.get('user_id')
-    cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * FROM users WHERE id=%s", (user_id,))
-    user = cursor.fetchone()
-    cursor.close()
+    user = User.query.get(session['user_id'])
 
     return render_template("home.html", recommendations=recommendations, user=user)
 
-#  FIXED: Logout Route
+# Logout
 @app.route('/logout')
 def logout():
     session.clear()
-    print(" Session after logout:", session)
     flash("You’ve been logged out.", "info")
     return redirect(url_for('login'))
 
-#  FIXED: Prevent Back Navigation After Logout
+# Cache Control
 @app.after_request
 def add_header(response):
     response.headers["Cache-Control"] = "no-store"
     return response
 
-#  Start the App
+# Run App
 if __name__ == '__main__':
     with app.app_context():
         load_data()
+        db.create_all()  # Create tables if they don't exist
     app.run(debug=True)
+
+
 

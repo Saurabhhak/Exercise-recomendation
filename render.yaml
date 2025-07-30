@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: flask-postgres-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://exercise_user:WtA49gw1Ng9hW3lPXtweOAqhdA1r10r1@dpg-d24vbrfgi27c73bggapg-a.oregon-postgres.render.com/exercise_db_irhs
