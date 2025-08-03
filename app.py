@@ -8,7 +8,6 @@ from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
-import razorpay
 
 # Flask App Setup
 app = Flask(__name__)
