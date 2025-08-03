@@ -9,227 +9,96 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="/static/style.css" />
-    <style>
-      .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 2rem;
-      }
-      .comparison-table th,
-      .comparison-table td {
-        border: 1px solid #ddd;
-        padding: 1rem;
-        text-align: center;
-      }
-      .comparison-table th {
-        background-color: #f4f4f4;
-        font-weight: bold;
-      }
-      .comparison-table .check {
-        color: green;
-      }
-      .comparison-table .cross {
-        color: red;
-      }
-      .pricing-auth {
-        margin-top: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .pricing-auth input,
-      .pricing-auth button {
-        padding: 0.75rem;
-        font-size: 1rem;
-        border-radius: 0.5rem;
-        border: 1px solid #ccc;
-        width: 100%;
-      }
-      .pricing-auth button {
-        background-color: #28a745;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
-      .pricing-auth button:hover {
-        background-color: #218838;
-      }
-      @media (min-width: 768px) {
-        .subscription-options {
-          display: flex;
-          justify-content: center;
-          gap: 2rem;
-        }
-        .plan {
-          flex: 1;
-          max-width: 300px;
-        }
-      }
-    </style>
   </head>
   <body>
-    <header class="header">
-      <a href="/" class="logo"
-        ><i class="fa fa-universal-access" aria-hidden="true"></i
-      ></a>
-      <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="#benefits">Benefits</a>
-        <a href="#subscribe">Subscribe</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="icons">
-        <div class="fa fa-bars" id="menu-btn"></div>
-        <div class="fa fa-user" id="login-btn"></div>
+    <header class="prime-header">
+      <div class="container">
+        <a href="/" class="logo">🏋️‍♂️ FitPrime</a>
+        <nav>
+          <a href="/">Home</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#subscribe">Subscribe</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <form action="#" class="login-form">
-        <a href="#" class="fa fa-user-circle"></a>
-        {% if user %}
-        <ul>
-          <li>{{ user.name }}</li>
-          <li>{{ user.email }}</li>
-        </ul>
-        <a href="{{ url_for('logout') }}" class="logout-btn"
-          >Log<span>out</span></a
-        >
-        {% else %}
-        <p>Please log in</p>
-        {% endif %}
-      </form>
     </header>
 
-    <section class="prime-hero" id="home">
-      <div class="content">
-        <h1>🌟 Welcome to Prime Membership</h1>
-        <p>Unlock premium features for better health & performance!</p>
-        <a href="#subscribe" class="btn">Join Prime Now</a>
-      </div>
+    <section class="hero-section">
+      <h1>Unlock the Power of Prime</h1>
+      <p>Take your fitness journey to the next level with exclusive tools and guidance.</p>
+      <a href="#subscribe" class="btn-primary">Become a Prime Member</a>
     </section>
 
-    <section class="prime-benefits" id="benefits">
-      <h2>Why Go Prime?</h2>
-      <ul class="benefit-list">
-        <li><i class="fa fa-check-circle"></i> Personalized Workout Plans</li>
-        <li><i class="fa fa-check-circle"></i> Nutrition Tracking</li>
-        <li><i class="fa fa-check-circle"></i> Access to Premium Exercises</li>
-        <li><i class="fa fa-check-circle"></i> Monthly Health Reports</li>
+    <section class="benefits-section" id="benefits">
+      <h2>Prime Member Benefits</h2>
+      <ul class="benefits-grid">
+        <li><i class="fa fa-star"></i> Personalized Workout Plans</li>
+        <li><i class="fa fa-heartbeat"></i> Nutrition Tracking</li>
+        <li><i class="fa fa-unlock-alt"></i> Premium Exercises</li>
+        <li><i class="fa fa-file-text"></i> Monthly Health Reports</li>
         <li><i class="fa fa-gift"></i> Surprise Fitness Gifts</li>
       </ul>
     </section>
 
-    <section class="prime-subscribe" id="subscribe">
-      <h2>Subscribe to Prime</h2>
-      <p>
-        Gain access to the best features for your fitness journey. Select a plan
-        that suits your lifestyle.
-      </p>
-      <div class="subscription-options">
-        <div class="plan">
+    <section class="pricing-section" id="subscribe">
+      <h2>Choose Your Plan</h2>
+      <div class="plans">
+        <div class="plan-card">
           <h3>Monthly</h3>
-          <p>$9.99/month</p>
-          <button class="btn">Subscribe</button>
+          <p class="price">₹99</p>
+          <p>Billed every month</p>
+          <form action="/create_order" method="POST">
+            <button class="btn-primary">Join Now</button>
+          </form>
         </div>
-        <div class="plan">
+        <div class="plan-card featured">
           <h3>Yearly</h3>
-          <p>$99.99/year</p>
-          <button class="btn">Subscribe</button>
+          <p class="price">₹999</p>
+          <p>Save 2 Months</p>
+          <form action="/create_order" method="POST">
+            <button class="btn-primary">Join Now</button>
+          </form>
         </div>
       </div>
-
       <table class="comparison-table">
-        <tr>
-          <th>Features</th>
-          <th>Free</th>
-          <th>Prime</th>
-        </tr>
-        <tr>
-          <td>Basic Workout Access</td>
-          <td><span class="check">✔</span></td>
-          <td><span class="check">✔</span></td>
-        </tr>
-        <tr>
-          <td>Premium Exercises</td>
-          <td><span class="cross">✖</span></td>
-          <td><span class="check">✔</span></td>
-        </tr>
-        <tr>
-          <td>Nutrition Tracking</td>
-          <td><span class="cross">✖</span></td>
-          <td><span class="check">✔</span></td>
-        </tr>
-        <tr>
-          <td>Monthly Reports</td>
-          <td><span class="cross">✖</span></td>
-          <td><span class="check">✔</span></td>
-        </tr>
-        <tr>
-          <td>Support</td>
-          <td>Email Only</td>
-          <td>Priority Chat + Email</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Free</th>
+            <th>Prime</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Basic Access</td><td>✔</td><td>✔</td></tr>
+          <tr><td>Premium Exercises</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Nutrition Tracking</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Health Reports</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Support</td><td>Email</td><td>Chat + Email</td></tr>
+        </tbody>
       </table>
-
-      <div class="pricing-auth">
-        <input type="email" placeholder="Enter your email" required />
-        <input type="password" placeholder="Create a password" required />
-        <button>Subscribe with Stripe</button>
-      </div>
     </section>
 
-    <section class="faq" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <h4>Can I cancel anytime?</h4>
-        <p>
-          Yes, you can cancel your Prime Membership at any time from your
-          account settings.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h4>Is Prime suitable for beginners?</h4>
-        <p>
-          Absolutely! Prime provides resources and guidance for all fitness
-          levels.
-        </p>
-      </div>
+    <section class="faq-section" id="faq">
+      <h2>FAQs</h2>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes, cancellation is available anytime through your account settings.</p>
+      </details>
+      <details>
+        <summary>Is Prime beginner-friendly?</summary>
+        <p>Absolutely! All features are designed to support all experience levels.</p>
+      </details>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact-section" id="contact">
       <h2>Need Help?</h2>
-      <p>
-        Contact our support team for any questions regarding Prime Membership.
-      </p>
-      <a href="mailto:support@exercise-recommendation.com" class="btn"
-        >Email Support</a
-      >
+      <p>Reach out to our support team for any assistance.</p>
+      <a href="mailto:support@exercise-recommendation.com" class="btn-secondary">Contact Support</a>
     </section>
-    <form action="/create_order" method="POST">
-      <button class="btn">Subscribe Now</button>
-    </form>
+
     <footer>
-      <p>&copy; 2024 Exercise Recommendation System – All rights reserved.</p>
+      <p>&copy; 2025 Exercise Recommendation. All Rights Reserved.</p>
     </footer>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-      var options = {
-        key: "YOUR_KEY_ID",
-        amount: "{{ amount }}",
-        currency: "INR",
-        name: "Exercise Recommendation",
-        description: "Prime Membership Subscription",
-        image: "/static/logo.png",
-        order_id: "{{ order_id }}",
-        handler: function (response) {
-          window.location.href = "/prime-confirmation";
-        },
-        theme: {
-          color: "#3399cc",
-        },
-      };
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-    </script>
   </body>
 </html>

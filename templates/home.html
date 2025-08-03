@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Exercise Recommendation Syste</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +33,7 @@
   <body>
     <header class="header">
       <a href="#" class="logo"
-        ><i class="fa fa-universal-access" aria-hidden="true"></i
+        >🏋️‍♂️<i class="fa fa-universal-access" aria-hidden="true"></i
       ></a>
       <nav class="navbar">
         <a href="#home">home</a>
@@ -149,15 +149,12 @@
           </div>
         </div>
         {% endfor %} {% else %}
-        <div
-          style="
+        <div style="
             font-size: 1.4rem;
             font-weight: bolder;
             font-family: sans-serif;
             margin-top: 20px;
-            color: red;
-          "
-        >
+            color: red;">
           Choose your exercise type to get the most personalized results!
         </div>
         {% endif %}
@@ -296,36 +293,20 @@
           </ul>
         </div>
         <div class="footer-section">
-          <!-- <form action="/create_order" method="POST">
-            <h3>Join Our Prime Membership</h3>
-          <button type="submit">Join Now</button> -->
-          <!-- Flash Message Display -->
-          {% with messages = get_flashed_messages(with_categories=true) %} {% if
-          messages %}
-          <ul class="list-unstyled">
-            {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %} {% endwith %}
-
-          <!-- Prime Membership Join Form -->
-          <form action="/create_order" method="POST">
-            <h3>Join Our Prime Membership</h3>
+          <form action="{{ url_for('prime') }}" method="get">
+            <h3>Subscribe Prime Membership</h3>
             <button type="submit">Join Now</button>
-            <p>
-              Join our community to get exclusive access to the latest
-              recommendations, tips, and resources.
-            </p>
           </form>
+          <p>
+            Join our community to get exclusive access to the latest
+            recommendations, tips, and resources.
+          </p>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2024 Saurabh. All rights reserved.</p>
       </div>
     </footer>
-    <!-- prime payement script -->
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/static/slider.js"></script>
     <script src="/static/script.js"></script>

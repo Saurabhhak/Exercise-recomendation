@@ -1,33 +1,157 @@
-.prime-hero {
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
-    color: #fff;
-    padding: 4rem 2rem;
-    text-align: center;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
 }
 
-.prime-hero .btn {
-    margin-top: 1rem;
-    padding: 0.8rem 2rem;
-    background: #fff;
-    color: #ff416c;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.prime-benefits {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    text-align: center;
+header.prime-header {
+  background: #222;
+  color: white;
+  padding: 1rem 2rem;
 }
 
-.benefit-list {
-    list-style: none;
-    padding: 0;
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.benefit-list li {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    color: #333;
+header nav a {
+  margin: 0 1rem;
+  color: #ddd;
+}
+
+header nav a:hover {
+  color: #fff;
+}
+
+.hero-section {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.btn-primary {
+  background: #fff;
+  color: #ff416c;
+  padding: 0.8rem 1.6rem;
+  font-weight: bold;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #fefefe;
+  box-shadow: 0 0 10px rgba(255, 65, 108, 0.3);
+}
+
+.btn-secondary {
+  background-color: #ff4b2b;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 5px;
+}
+
+.benefits-section {
+  padding: 3rem 2rem;
+  background: #f7f7f7;
+  text-align: center;
+}
+
+.benefits-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+
+.benefits-grid li {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
+}
+
+.pricing-section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.plan-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 260px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.plan-card.featured {
+  border: 2px solid #ff4b2b;
+}
+
+.price {
+  font-size: 1.8rem;
+  color: #ff416c;
+  margin: 0.5rem 0;
+}
+
+.comparison-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: center;
+}
+
+.comparison-table th {
+  background: #f1f1f1;
+}
+
+.faq-section,
+.contact-section {
+  padding: 3rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+details {
+  margin: 1rem 0;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  background: #111;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
 }

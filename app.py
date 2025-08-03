@@ -114,7 +114,7 @@ def register():
     return render_template('register.html', form=form)
 
 # Recommend
-@app.route('/recommend', methods=['POST'])
+@app.route('/recommend', methods=['GET', 'POST'])
 @login_required
 def recommend():
     df = current_app.config.get('DATAFRAME')
@@ -147,7 +147,11 @@ def logout():
     flash("You’ve been logged out.", "info")
     return redirect(url_for('login'))
 
-# Prime Membership Confirmation
+# Prime Membership route
+@app.route('/prime')
+def prime():
+    return render_template('prime.html')
+
 
 # admin Route
 @app.route('/admin/users')
