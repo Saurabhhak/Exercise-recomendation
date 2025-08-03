@@ -4,9 +4,7 @@ document.querySelector("#login-btn").onclick = () => {
   // searchForm.classList.remove('active');
   // shoppingCart.classList.remove("active");
   navBar.classList.remove("active");
-
 };
-
 let navBar = document.querySelector(".navbar");
 document.querySelector("#menu-btn").onclick = () => {
   navBar.classList.toggle("active");

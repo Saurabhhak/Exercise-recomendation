@@ -1,313 +1,333 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Exercise Recommendation Syste</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- Code for font awesome cdn -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <!-- linking swiper stylesheet-->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
-    <link rel="icon" type="image/x-icon" href="/static/img/dumbbell.png" style="background-color: #eee;">
-</head>
-<script>window.user = JSON.parse(`{{ user }}`)</script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/static/img/dumbbell.png"
+      style="background-color: #eee"
+    />
+  </head>
+  <script>
+    window.user = JSON.parse(`{{ user }}`);
+  </script>
 
-<body>
+  <body>
     <header class="header">
-        <a href="#" class="logo"><i class="fa fa-universal-access" aria-hidden="true"></i></a>
-        <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#">Health Topics</a>
-            <a href="#">Health Tips</a>
-            <a href="#">Resourse</a>
-            <a href="#">About Us</a>
-        </nav>
-        <div class="icons">
-            <div class="fa fa-bars" id="menu-btn"></div>
-            <div class="fa fa-user" id="login-btn"></div>
-        </div>
+      <a href="#" class="logo"
+        ><i class="fa fa-universal-access" aria-hidden="true"></i
+      ></a>
+      <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#">Health Topics</a>
+        <a href="#">Health Tips</a>
+        <a href="#">Resourse</a>
+        <a href="#">About Us</a>
+      </nav>
+      <div class="icons">
+        <div class="fa fa-bars" id="menu-btn"></div>
+        <div class="fa fa-user" id="login-btn"></div>
+      </div>
 
-        <form action="#" class="login-form">
-            <a href="#" class="fa fa-user-circle"></a>
-            {% if user %}
-            <ul>
-                <li>{{ user[1] }}</li>
-                <li>{{ user[2] }}</li>
-            </ul>
-            {% endif %}
-            <a href="{{ url_for('logout') }}" class="logout-btn">Log out</a>
-        </form>
-        <form action="#" class="login-form">
-                <a href="#" class="fa fa-user-circle"></a>
-                <h5>User Name</h5>
-                <a href="{{ url_for('logout') }}" class="logout-btn">Log out</a>
-            </form>
+      <form action="#" class="login-form">
+        <a href="#" class="fa fa-user-circle"></a>
+        {% if user %}
+        <ul>
+          <li>{{ user.name }}</li>
+          <li>{{ user.email }}</li>
+        </ul>
+        {% endif %}
+        <a href="{{ url_for('logout') }}" class="logout-btn"
+          >Log<span>out</span></a
+        >
+      </form>
+      <form action="#" class="login-form">
+        <a href="#" class="fa fa-user-circle"></a>
+        <h5>User Name</h5>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Log out</a>
+      </form>
     </header>
     <section class="home" id="home">
-        <div class="content">
-            <h3>Exercise <span>Recommendation</span> System</h3>
-            <a href="#r-form" class="btn">Get Recommendation</a>
-        </div>
+      <div class="content">
+        <h3>Exercise <span>Recommendation</span> System</h3>
+        <a href="#r-form" class="btn">Get Recommendation</a>
+      </div>
     </section>
     <form action="/recommend#recommendations" method="POST" id="r-form">
-        <header class="header-form">
-            <!-- <h2>Exercise Recommendation System</h2> -->
-            <label for="exercise_type">Type of Exercise</label>
-            <select id="exercise_type" name="exercise_type">
-                <option value="">Select Exercise Type</option>
-                <option value="Strength" selected>Strength</option>
-                <option value="Plyometrics">Plyometrics</option>
-                <option value="Stretching">Stretching</option>
-                <option value="Powerlifting">Powerlifting</option>
-                <option value="Strongman">Strongman</option>
-                <option value="Cardio">Cardio</option>
-                <option value="Olympic Weightlifting">Olympic Weightlifting</option>
-            </select>
-            <label for="body_part">Body Part</label>
-            <select id="body_part" name="body_part">
-                <option value="">Select Body Part</option>
-                <option value="Abdominals">Abdominals</option>
-                <option value="Abductors">Abductors</option>
-                <option value="Adductors">Adductors</option>
-                <option value="Biceps" selected>Biceps</option>
-                <option value="Calves">Calves</option>
-                <option value="Chest">Chest</option>
-                <option value="Forearms">Forearms</option>
-                <option value="Glutes">Glutes</option>
-                <option value="Hamstrings">Hamstrings</option>
-                <option value="Lats">Lats</option>
-                <option value="Lower Back">Lower Back</option>
-                <option value="Middle Back">Middle Back</option>
-                <option value="Traps">Traps</option>
-                <option value="Quadriceps">Quadriceps</option>
-                <option value="Shoulders">Shoulders</option>
-                <option value="Triceps">Triceps</option>
-            </select>
-            <label for="equipment">Equipment</label>
-            <select id="equipment" name="equipment">
-                <option value="">Select Equipment</option>
-                <option value="Barbell">Barbell</option>
-                <option value="Kettlebells">Kettlebells</option>
-                <option value="Dumbbell">Dumbbell</option>
-                <option value="Other">Other</option>
-                <option value="Cable">Cable</option>
-                <option value="Machine">Machine</option>
-                <option value="Body Only" selected>Body Only</option>
-                <option value="Medicine Ball">Medicine Ball</option>
-                <option value="Exercise Ball">Exercise Ball</option>
-                <option value="Foam Roll">Foam Roll</option>
-                <option value="E-Z Curl Bar">E-Z Curl Bar</option>
-                <option value="Bands">Bands</option>
-            </select>
-            <label for="level">Level</label>
-            <select id="level" name="level">
-                <option value="">Select Level</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate" selected>Intermediate</option>
-                <option value="Expert">Expert</option>
-            </select>
-        </header>
-        <button type="submit" class="btn2">Recommendations Now</button>
-        <!-- <div class="card-container">
-                <div class="card">
-                    <h3>recommendations</h3>
-                    <textarea name="recommendation" id="" cols="40" rows="15" class="area"></textarea>
-                </div>
-                <div class="card">
-                    <h3>exercise image</h3>
-                    <img src="static\img\chin-up.jpg" alt="">
-                </div>
-            </div>
-            {% if recommendations %}
-            <span><code>{{ recommendations }}</code></span>
-            {% endif %} -->
+      <header class="header-form">
+        <!-- <h2>Exercise Recommendation System</h2> -->
+        <label for="exercise_type">Type of Exercise</label>
+        <select id="exercise_type" name="exercise_type">
+          <option value="">Select Exercise Type</option>
+          <option value="Strength" selected>Strength</option>
+          <option value="Plyometrics">Plyometrics</option>
+          <option value="Stretching">Stretching</option>
+          <option value="Powerlifting">Powerlifting</option>
+          <option value="Strongman">Strongman</option>
+          <option value="Cardio">Cardio</option>
+          <option value="Olympic Weightlifting">Olympic Weightlifting</option>
+        </select>
+        <label for="body_part">Body Part</label>
+        <select id="body_part" name="body_part">
+          <option value="">Select Body Part</option>
+          <option value="Abdominals">Abdominals</option>
+          <option value="Abductors">Abductors</option>
+          <option value="Adductors">Adductors</option>
+          <option value="Biceps" selected>Biceps</option>
+          <option value="Calves">Calves</option>
+          <option value="Chest">Chest</option>
+          <option value="Forearms">Forearms</option>
+          <option value="Glutes">Glutes</option>
+          <option value="Hamstrings">Hamstrings</option>
+          <option value="Lats">Lats</option>
+          <option value="Lower Back">Lower Back</option>
+          <option value="Middle Back">Middle Back</option>
+          <option value="Traps">Traps</option>
+          <option value="Quadriceps">Quadriceps</option>
+          <option value="Shoulders">Shoulders</option>
+          <option value="Triceps">Triceps</option>
+        </select>
+        <label for="equipment">Equipment</label>
+        <select id="equipment" name="equipment">
+          <option value="">Select Equipment</option>
+          <option value="Barbell">Barbell</option>
+          <option value="Kettlebells">Kettlebells</option>
+          <option value="Dumbbell">Dumbbell</option>
+          <option value="Other">Other</option>
+          <option value="Cable">Cable</option>
+          <option value="Machine">Machine</option>
+          <option value="Body Only" selected>Body Only</option>
+          <option value="Medicine Ball">Medicine Ball</option>
+          <option value="Exercise Ball">Exercise Ball</option>
+          <option value="Foam Roll">Foam Roll</option>
+          <option value="E-Z Curl Bar">E-Z Curl Bar</option>
+          <option value="Bands">Bands</option>
+        </select>
+        <label for="level">Level</label>
+        <select id="level" name="level">
+          <option value="">Select Level</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate" selected>Intermediate</option>
+          <option value="Expert">Expert</option>
+        </select>
+      </header>
+      <button type="submit" class="btn2">Recommendations Now</button>
     </form>
     <!-- OUTPUT CONTAINER -->
     <div id="recommendations">
-        <h3 id="recommendations-heading">Recommendations</h3>
-        <div id="output-card-box">
-
-            <!-- <div class="output-card">
-                <div class="output-card-img"><img alt="Exercise Image" /></div>
-                <div class="output-card-title">Exercise Title</div>
-                <div class="output-card-desc">Exercise Description</div>
-            </div> -->
-
-            <!-- <div class="output-card">
-                <div class="output-card-img"><img alt="Exercise Image" /></div>
-                <div class="output-card-title">Exercise Title</div>
-                <div class="output-card-desc">Exercise Description</div>
-            </div> -->
-            {% if recommendations %}
-            {% for recommendation in recommendations %}
-            <div class="output-card">
-                <div class="output-card-img">
-                    <img alt="Exercise Image" src="/static/exercise-images/{{ recommendation['Image']|safe }}" />
-                </div>
-                <div class="output-card-title">{{ recommendation['Title'] }}</div>
-                <!-- <div class="output-card-desc">{{ recommendation['Description'] }}</div> -->
-            </div>
-            {% endfor %}
-            {% else %}
-                <div style="font-size: 1.3rem; margin-top: 20px; color: red;">No Exercise Found for you.</div>
-            {% endif %}
-
-
-            <!-- <div class="card">
-                <textarea name="recommendations" id="recommendations" cols="40" rows="15" class="area">
-                    {% if recommendations %}
-                    {{ recommendations }}
-                    {% else %}
-                    No recommendations available.
-                    {% endif %}
-                </textarea>
-            </div> -->
-            <!-- <div class="card">
-                <h3>Exercise Image</h3>
-                <img src="{{ url_for('static', filename='img/chin-up.jpg') }}" alt="Exercise Image">
-            </div> -->
+      <h3 id="recommendations-heading">Recommendations</h3>
+      <div id="output-card-box">
+        {% if recommendations %} {% for recommendation in recommendations %}
+        <div class="output-card">
+          <div class="output-card-img">
+            <img
+              alt="Exercise Image"
+              src="/static/exercise-images/{{ recommendation['Image']|safe }}"
+            />
+          </div>
+          <div class="output-card-title">{{ recommendation['Title'] }}</div>
+          <div class="output-card-desc">
+            {{ recommendation['Description'] }}
+          </div>
         </div>
+        {% endfor %} {% else %}
+        <div
+          style="
+            font-size: 1.4rem;
+            font-weight: bolder;
+            font-family: sans-serif;
+            margin-top: 20px;
+            color: red;
+          "
+        >
+          Choose your exercise type to get the most personalized results!
+        </div>
+        {% endif %}
+      </div>
     </div>
-
     <section class="ratings" id="ratings">
-        <h1 class="heading">Our coustomer<span>Review</span> </h1>
-        <div class="swiper rating-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <img src="static\img\people1.png" alt="">
-                    <h1>Charlize Theron.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="static\img\people2.png" alt="">
-                    <h1>Emma Watson.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="static\img\people3.png" alt="">
-                    <h1>Leonardo Dicaprio.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="static\img\people4.png" alt="">
-                    <h1>Hugh Jackman.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="static\img\people8.png" alt="">
-                    <h1>Jennifer Lawrence.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="static\img\people7.png" alt="">
-                    <h1>Chris Hemsworth.</h1>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                    <p>There are lots of food variety compare to other websites, which is great. We had a quick delivery
-                        and good package as well. </p>
-                    <a href="#" class="btn">read more</a>
-                </div>
+      <h1 class="heading">Our coustomer<span>Review</span></h1>
+      <div class="swiper rating-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide box">
+            <img src="static\img\people1.png" alt="" />
+            <h1>Charlize Theron.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
             </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
+          <div class="swiper-slide box">
+            <img src="static\img\people2.png" alt="" />
+            <h1>Emma Watson.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
+          <div class="swiper-slide box">
+            <img src="static\img\people3.png" alt="" />
+            <h1>Leonardo Dicaprio.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
+          <div class="swiper-slide box">
+            <img src="static\img\people4.png" alt="" />
+            <h1>Hugh Jackman.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
+          <div class="swiper-slide box">
+            <img src="static\img\people8.png" alt="" />
+            <h1>Jennifer Lawrence.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
+          <div class="swiper-slide box">
+            <img src="static\img\people7.png" alt="" />
+            <h1>Chris Hemsworth.</h1>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            </div>
+            <p>
+              There are lots of food variety compare to other websites, which is
+              great. We had a quick delivery and good package as well.
+            </p>
+            <a href="#" class="btn">read more</a>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
     <footer>
-        <div class="footer-container">
-            <div class="footer-section" id="Aboutus">
-                <h3>About Us</h3>
-                <!-- <i class="fa fa-user-secret" aria-hidden="true"></i> -->
-                <p>We provide the best recommendations for products, services, and experiences based on user reviews and
-                    expert opinions.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#Aboutus">About Us</a></li>
-                    <li><a href="/privacy-policy">Privacy Policy</a></li>
-                    <li><a href="/terms-of-service">Terms of Service</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Subscribe Prime</h3>
-                <form action="/subscribe" method="post">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Join Now</button>
-                </form>
-            </div>
+      <div class="footer-container">
+        <div class="footer-section" id="Aboutus">
+          <h3>About Us</h3>
+          <!-- <i class="fa fa-user-secret" aria-hidden="true"></i> -->
+          <p>
+            We provide the best recommendations for products, services, and
+            experiences based on user reviews and expert opinions.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Saurabh. All rights reserved.</p>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#Aboutus">About Us</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/terms-of-service">Terms of Service</a></li>
+          </ul>
         </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+            <li>
+              <a href="https://instagram.com" target="_blank">Instagram</a>
+            </li>
+            <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <!-- <form action="/create_order" method="POST">
+            <h3>Join Our Prime Membership</h3>
+          <button type="submit">Join Now</button> -->
+          <!-- Flash Message Display -->
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %}
+          <ul class="list-unstyled">
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+
+          <!-- Prime Membership Join Form -->
+          <form action="/create_order" method="POST">
+            <h3>Join Our Prime Membership</h3>
+            <button type="submit">Join Now</button>
+            <p>
+              Join our community to get exclusive access to the latest
+              recommendations, tips, and resources.
+            </p>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Saurabh. All rights reserved.</p>
+      </div>
     </footer>
-    <!-- code for footer section -->
+    <!-- prime payement script -->
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/static/slider.js"></script>
     <script src="/static/script.js"></script>
-</body>
-
-
+  </body>
 </html>

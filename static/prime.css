@@ -1,0 +1,33 @@
+.prime-hero {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.prime-hero .btn {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    background: #fff;
+    color: #ff416c;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.prime-benefits {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefit-list li {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #333;
+}

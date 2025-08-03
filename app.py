@@ -8,6 +8,7 @@ from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
+import razorpay
 
 # Flask App Setup
 app = Flask(__name__)
@@ -61,7 +62,8 @@ def load_data():
 @login_required
 def home():
     user_id = session.get('user_id')
-    user = User.query.get(user_id)
+    # user = User.query.get(user_id)
+    user = db.session.get(User, user_id)
     if user:
         return render_template('home.html', user=user)
     flash("Invalid session. Please log in again.", "danger")
@@ -145,6 +147,14 @@ def logout():
     flash("You’ve been logged out.", "info")
     return redirect(url_for('login'))
 
+# Prime Membership Confirmation
+
+# admin Route
+@app.route('/admin/users')
+def view_users():
+    users = User.query.all()
+    return '<br>'.join([f"{u.id} - {u.name} - {u.email}" for u in users])
+
 # Cache Control
 @app.after_request
 def add_header(response):
@@ -157,6 +167,9 @@ if __name__ == '__main__':
         load_data()
         db.create_all()  # Create tables if they don't exist
     app.run(debug=True)
+
+
+
 
 
 

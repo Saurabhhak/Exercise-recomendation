@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <script>
+        var options = {
+            "key": "YOUR_KEY_ID", // Replace with your Razorpay Key ID
+            "amount": "{{ amount }}",
+            "currency": "INR",
+            "name": "Exercise Recommendation",
+            "description": "Prime Subscription",
+            "order_id": "{{ order_id }}",
+            "handler": function (response){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "/payment_success");
+
+                const fields = {
+                    "razorpay_payment_id": response.razorpay_payment_id,
+                    "razorpay_order_id": response.razorpay_order_id,
+                    "razorpay_signature": response.razorpay_signature
+                };
+
+                for (const key in fields) {
+                    if (fields.hasOwnProperty(key)) {
+                        const input = document.createElement("input");
+                        input.setAttribute("type", "hidden");
+                        input.setAttribute("name", key);
+                        input.setAttribute("value", fields[key]);
+                        form.appendChild(input);
+                    }
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    </script>
+</body>
+</html>
