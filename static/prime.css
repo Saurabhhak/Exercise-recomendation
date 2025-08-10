@@ -11,25 +11,40 @@ a {
   color: inherit;
 }
 
-header.prime-header {
-  background: #222;
-  color: white;
-  padding: 1rem 2rem;
-}
-
-header .container {
+.prime-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  font-family: "Trebuchet MS";
+  background: #7a827a;
+  box-shadow: var(--box-shadow);
+  padding: 0.6rem 8%;
 }
 
-header nav a {
-  margin: 0 1rem;
-  color: #ddd;
+.prime-header nav a {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  color: #040303;
 }
 
-header nav a:hover {
+.prime-header nav a:hover {
+  background: #fb0126;
+  color: #ffffff;
+}
+
+#menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
   color: #fff;
+  cursor: pointer;
 }
 
 .hero-section {
@@ -54,13 +69,6 @@ header nav a:hover {
   box-shadow: 0 0 10px rgba(255, 65, 108, 0.3);
 }
 
-.btn-secondary {
-  background-color: #ff4b2b;
-  color: white;
-  padding: 0.7rem 1.4rem;
-  border-radius: 5px;
-}
-
 .benefits-section {
   padding: 3rem 2rem;
   background: #f7f7f7;
@@ -72,7 +80,7 @@ header nav a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
-  margin: 2rem 0 0 0;
+  margin-top: 2rem;
   padding: 0;
 }
 
@@ -84,17 +92,11 @@ header nav a:hover {
   font-size: 1.1rem;
 }
 
-.pricing-section {
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
 .plans {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin: 2rem 0;
 }
 
 .plan-card {
@@ -118,8 +120,6 @@ header nav a:hover {
 
 .comparison-table {
   width: 100%;
-  max-width: 800px;
-  margin: 2rem auto;
   border-collapse: collapse;
 }
 
@@ -132,13 +132,6 @@ header nav a:hover {
 
 .comparison-table th {
   background: #f1f1f1;
-}
-
-.faq-section,
-.contact-section {
-  padding: 3rem 2rem;
-  background: #fff;
-  text-align: center;
 }
 
 details {
@@ -154,4 +147,89 @@ footer {
   color: white;
   padding: 1.5rem;
   text-align: center;
+}
+
+/* ======== Responsive Breakpoints ======== */
+
+/* For 1080px and below */
+@media (max-width: 1080px) {
+  .prime-header {
+    padding: 0.6rem 5%;
+  }
+  .benefits-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .plan-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+  .prime-header nav {
+    position: absolute;
+    top: 100%;
+    right: -110%;
+    width: 12rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
+    background: #bebebe;
+    flex-direction: column;
+  }
+  .prime-header nav a {
+    display: block;
+    margin: 1rem;
+    font-size: 1rem;
+    color: #000;
+  }
+  .prime-header nav.active {
+    right: 0.5rem;
+    transition: 0.3s ease;
+  }
+  .plans {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* For large phones (480px and below) */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 3rem 1rem;
+    font-size: 0.9rem;
+  }
+  .btn-primary {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  .plan-card {
+    padding: 1.5rem;
+  }
+  .price {
+    font-size: 1.5rem;
+  }
+}
+
+/* For small phones (320px and below) */
+@media (max-width: 320px) {
+  .hero-section {
+    padding: 2rem 0.8rem;
+  }
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  .plan-card {
+    padding: 1rem;
+  }
+  footer {
+    font-size: 0.85rem;
+  }
 }

@@ -19,3 +19,20 @@ window.onscroll = () => {
   navBar.classList.remove("active");
 };
 
+// Dark mode toggle functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("darkModeToggle");
+  const icon = toggleBtn.querySelector("i");
+  const prefersDark = localStorage.getItem("darkMode") === "true";
+
+  const applyTheme = (isDark) => {
+    document.body.classList.toggle("dark-mode", isDark);
+    icon.className = isDark ? "fa fa-sun-o" : "fa fa-moon-o";
+  }
+  applyTheme(prefersDark);
+  toggleBtn.addEventListener("click", () => {
+    const isDark = !document.body.classList.contains("dark-mode");
+    localStorage.setItem("darkMode", isDark);
+    applyTheme(isDark);
+  });
+});

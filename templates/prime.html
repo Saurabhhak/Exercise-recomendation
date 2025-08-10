@@ -12,18 +12,17 @@
   </head>
   <body>
     <header class="prime-header">
-      <div class="container">
-        <a href="/" class="logo">🏋️‍♂️ FitPrime</a>
+        <a href="/"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <!-- <a href="/templates/prime.html" class="logo">🏋️‍♂️ FitPrime</a> -->
         <nav>
-          <a href="/">Home</a>
+          <a href="{{ url_for('prime') }}">Home</a>
           <a href="#benefits">Benefits</a>
           <a href="#subscribe">Subscribe</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
-      </div>
+        <div class="fa fa-bars" id="menu-btn"></div>
     </header>
-
     <section class="hero-section">
       <h1>Unlock the Power of Prime</h1>
       <p>Take your fitness journey to the next level with exclusive tools and guidance.</p>
@@ -100,5 +99,6 @@
     <footer>
       <p>&copy; 2025 Exercise Recommendation. All Rights Reserved.</p>
     </footer>
+    <script src="/static/prime.js"></script>
   </body>
 </html>
