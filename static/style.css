@@ -650,6 +650,9 @@ button:hover {
     width: 350px;
     margin: 15px;
   }
+  .output-card {
+    max-width: 45%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -686,6 +689,9 @@ button:hover {
   .card {
     width: 300px;
     margin: 10px;
+  }
+  .output-card {
+    max-width: 90%;
   }
 
   .footer .box-container {
@@ -724,6 +730,9 @@ button:hover {
     width: 280px;
     margin: 5px;
   }
+    .output-card {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 320px) {
@@ -757,8 +766,6 @@ button:hover {
   }
 }
 
-/* -------------------- ABHAY STYLES --------------------- */
-
 #recommendations {
   border: 1px solid #aaa;
   border-radius: 10px;
@@ -778,49 +785,62 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 15px; /* Slightly more spacing for premium look */
+  padding: 15px;
 }
 
 .output-card {
-  /* flex: 1; */
-  border-radius: 10px;
-  border: 2px solid #aaa;
+  border-radius: 15px; /* More rounded corners */
+  border: 2px solid gold; /* Royal golden border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Premium shadow */
+  background: linear-gradient(to bottom, #fffaf0, #fefefe); /* Elegant background */
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding-bottom: 10px;
-  max-width: 300px;
+  gap: 8px;
+  padding-bottom: 12px;
+  max-width: 320px; /* Slightly bigger */
   overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  /* max-height: ; */
+.output-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .output-card-img img {
   max-width: 100%;
-  max-width: 100%;
+  border-bottom: 2px solid gold; /* Royal divider */
 }
 
 .output-card-img {
-  min-width: 300px;
-  height: 250px;
-  /* background: royalblue; */
-
+  min-width: 320px; /* Increased for premium feel */
+  height: 270px; /* Slightly taller */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .output-card-title {
-  padding: 0 10px;
-  font-size: 1rem;
+  padding: 8px 10px;
+  font-size: 1.2rem;
   text-align: center;
+  font-weight: bold;
+  color: #8b0000; /* Deep royal red */
+  background: linear-gradient(to right, gold, #ffefba, gold);
+  border-bottom: 2px solid gold;
+  letter-spacing: 1px;
 }
 
 .output-card-desc {
   padding: 0 15px;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #333;
 }
+
+
+
 
 
 /* 🌙 Dark Mode Support */
