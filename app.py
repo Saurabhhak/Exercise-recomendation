@@ -20,6 +20,19 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize Extensions
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
+# Load Dataset
+def load_data():
+    try:
+        df = pd.read_csv('ExerciseDataset.csv')
+        current_app.config['DATAFRAME'] = df
+    except FileNotFoundError:
+        print("Exercise dataset not found.")
+
+# --- NEW CODE START ---
+with app.app_context():
+    load_data()
+    print("Dataset loaded successfully on startup.")
+# --- NEW CODE END ---
 
 # User Model
 class User(db.Model):
