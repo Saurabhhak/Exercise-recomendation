@@ -142,7 +142,7 @@
         {% if recommendations %} {% for recommendation in recommendations %}
         <div class="output-card">
           <div class="output-card-img">
-            <img
+            <img style="background: red;"
               alt="Exercise Image"
               src="/static/exercise-images/{{ recommendation['Image']|safe }}"
             />
@@ -160,8 +160,7 @@
             font-family: sans-serif;
             margin-top: 20px;
             color: red;
-          "
-        >
+          ">
           Choose your exercise type to get the most personalized results!
         </div>
         {% endif %}
