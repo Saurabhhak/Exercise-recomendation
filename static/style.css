@@ -281,13 +281,15 @@ body {
 }
 
 .header .login-form ul li {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-top: 0.7rem;
   color: var(--black);
   line-height: 2rem;
   text-decoration: none;
   font-weight: bold;
   list-style-type: none;
+  text-transform: lowercase;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .header .login-form .logout-btn {
@@ -363,7 +365,7 @@ form {
 }
 .header-form {
   /* text-align: center; */
-  background: #fff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -377,9 +379,10 @@ form {
 .header-form label {
   display: block;
   margin: 10px 0 5px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--black);
   font-family: "Trebuchet MS";
+  font-weight: bolder;
 }
 .header-form select,
 .header-form input[type="submit"] {
@@ -409,11 +412,20 @@ form {
   color: #ffffff;
 }
 .header-form select {
-  background-color: #eee;
+  background-color: #f6f6f6;
   color: var(--black);
-  font-weight: lighter;
+  font-weight: bolder;
+  font-style: var(--border);
+  font-family: "Trebuchet MS";
+  font-size: 1.5rem;
 }
-
+.header-form option{
+  color: rgb(0, 0, 0);
+  background-color: #f6f6f6;
+  font-weight: bold;
+  font-family: "Trebuchet MS";
+  font-size: 1.4rem;
+}
 .btn2 {
   align-items: center;
   text-align: center;
@@ -963,8 +975,10 @@ body.dark-mode .header #darkModeToggle
 {
   background-color: rgb(255, 255, 255);
   color: var(--black);
+  align-items: center;
+  text-align: center;
 }
 body.dark-mode .header #darkModeToggle:hover{
-  background-color: rgb(255, 255, 0);
-  color: rgb(211, 61, 19);
+  background-color: gold;
+  color: #fd913e;
 }

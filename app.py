@@ -14,7 +14,8 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key')
 
 # PostgreSQL Config for Render
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://exercise_user:WtA49gw1Ng9hW3lPXtweOAqhdA1r10r1@dpg-d24vbrfgi27c73bggapg-a.oregon-postgres.render.com/exercise_db_irhs'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:J5F9VHSOU3HaCobcSHRI27GJBW0VmGtW@dpg-d41lllbe5dus73dehklg-a.oregon-postgres.render.com/exercise_db_5bev'
+# SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost:5432/exercise_db_5bev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize Extensions
